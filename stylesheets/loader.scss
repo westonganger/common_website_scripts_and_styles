@@ -1,0 +1,118 @@
+/* http://codepen.io/jczimm/pen/vEBpoL */
+
+$green: #008744;
+$blue: #0057e7;
+$red: #d62d20;
+$yellow: #ffa700;
+
+// scaling... any units
+$width: 120px;
+
+#loader {
+  z-index: 9000;
+  position:fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  //background-color: white;
+  //opacity: 0.5;
+  background: rgba(255, 255, 255, 0.5); 
+  display: table;
+  width: 100%;
+  height: 100%;
+
+  .the-spinner{
+    opacity: 0.5;
+  }
+
+  &.withmodal{
+    background-color: #666666;
+
+    //opacity: 0.7;
+    background: rgba(255, 255, 255, 0.7); 
+
+    .the-spinner{
+      opacity: 0.7;
+    }
+  }
+
+  #text{
+    color: #444;
+  }
+
+  .vcenter{
+    display:table-cell;
+    vertical-align: middle;
+  }
+
+  .the-spinner{
+    z-index: 9001;
+    position: relative;
+    margin: 0 auto;
+    width: $width;
+    
+    &:before {
+      content:'';
+      display: block;
+      padding-top: 100%;
+    }
+
+    svg.circular {
+      animation: rotate 2s linear infinite;
+      height: 100%;
+      transform-origin: center center;
+      width: 100%;
+      position: absolute;
+      top: 0; bottom: 0; left: 0; right: 0;
+      margin: auto;
+
+      .path{
+        animation: 
+         dash 1.5s ease-in-out infinite,
+         color 6s ease-in-out infinite
+        ;
+
+        &.slow{
+          stroke: $blue;
+          animation: dash 0.2s linear infinite;
+        }
+        stroke-linecap: round;
+      }
+    }
+  }
+}
+
+@keyframes rotate{
+ 100%{
+  transform: rotate(360deg);
+ }
+}
+@keyframes dash{
+ 0%{
+  stroke-dasharray: 1,200;
+  stroke-dashoffset: 0;
+ }
+ 50%{
+  stroke-dasharray: 89,200;
+  stroke-dashoffset: -35px;
+ }
+ 100%{
+  stroke-dasharray: 89,200;
+  stroke-dashoffset: -124px;
+ }
+}
+@keyframes color{
+  100%, 0%{
+    stroke: $red;
+  }
+  40%{
+    stroke: $blue;
+  }
+  66%{
+    stroke: $green;
+  }
+  80%, 90%{
+    stroke: $yellow;
+  }
+}

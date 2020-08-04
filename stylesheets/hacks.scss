@@ -1,0 +1,3 @@
+html, body{
+  cursor: pointer; // to fix iOS not registering click events, https://stackoverflow.com/a/16006333/3068360
+}
